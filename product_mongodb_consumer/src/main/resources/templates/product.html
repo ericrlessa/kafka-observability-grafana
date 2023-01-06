@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+    <head></head>
+
+    <body>
+        <h1>Products (MongoDB)</h1>
+
+        <table>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+    
+            <tr th:each="prd : ${products}">
+                <th scope="row"></th>
+                <td><span th:text="${prd.name}"></span></td>
+                <td><span th:text="${prd.price}"></span></td>
+            </tr>
+        </table>
+    </body>
+
+</html>
