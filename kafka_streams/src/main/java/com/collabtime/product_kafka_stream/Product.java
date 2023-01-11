@@ -1,19 +1,11 @@
-package com.collabtime.product_mysql;
-
+package com.collabtime.product_kafka_stream;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
 public class Product {
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     private String name;

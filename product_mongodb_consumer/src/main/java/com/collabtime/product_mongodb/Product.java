@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("mysql-server.productdb.product")
+@Document("productdb.product")
 public class Product {
    
     @Id
