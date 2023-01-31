@@ -1,6 +1,31 @@
 version: "3"
 
 services:
+
+  product-kafka-stream:
+    image: product-kafka-stream:0.0.1-SNAPSHOT
+    depends_on:
+      - zookeeper
+      - kafka
+  
+  product-mongodb-consumer:
+    image: product-mongodb-consumer:0.0.1-SNAPSHOT
+    ports:
+      - "8081:8081"
+    depends_on:
+      - zookeeper
+      - kafka
+      - mongodb
+  
+  product-mysql-producer:
+    image: product-mysql-producer:0.0.1-SNAPSHOT
+    ports:
+      - "8082:8082"
+    depends_on:
+      - zookeeper
+      - kafka
+      - mysql
+
   # app:
   #   build: .
   #   container_name: gokafka
@@ -43,7 +68,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://:9092,OUTSIDE://:9094
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,OUTSIDE://localhost:9094
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,OUTSIDE://kafka:9094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
