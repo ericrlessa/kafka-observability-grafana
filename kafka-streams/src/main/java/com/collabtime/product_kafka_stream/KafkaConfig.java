@@ -12,6 +12,7 @@ import java.util.Properties;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaStreamsDefaultConfiguration;
@@ -21,6 +22,9 @@ import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
 public class KafkaConfig {
+
+    @Value("${topic.name.origin}")
+    private String topicNameOrigin;
 
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     KafkaStreamsConfiguration kStreamsConfig() {
@@ -48,7 +52,7 @@ public class KafkaConfig {
 
     @Bean
     NewTopic inputTopic() {
-        return TopicBuilder.name("topico.comando.teste")
+        return TopicBuilder.name(topicNameOrigin)
             .partitions(1)
             .replicas(1)
             .build();

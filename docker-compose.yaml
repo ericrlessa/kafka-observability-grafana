@@ -5,8 +5,8 @@ services:
   product-kafka-stream:
     image: product-kafka-stream:0.0.1-SNAPSHOT
     depends_on:
-      - zookeeper
-      - kafka
+      - product-mongodb-consumer
+      - product-mysql-producer
   
   product-mongodb-consumer:
     image: product-mongodb-consumer:0.0.1-SNAPSHOT
@@ -26,13 +26,6 @@ services:
       - kafka
       - mysql
 
-  # app:
-  #   build: .
-  #   container_name: gokafka
-  #   volumes:
-  #     - .:/go/src/
-  #   extra_hosts:
-  #     - "host.docker.internal:172.17.0.1"
   mysql:
     image: mysql:latest
     command: --innodb-use-native-aio=0
