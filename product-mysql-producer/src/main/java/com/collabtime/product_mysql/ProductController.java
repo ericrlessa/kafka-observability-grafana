@@ -1,5 +1,8 @@
 package com.collabtime.product_mysql;
 
+import io.micrometer.observation.annotation.Observed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ProductController {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private ProductRepository productRepository;
@@ -39,8 +44,13 @@ public class ProductController {
         return "addProductForm";
     }
 
+    @Observed(name = "product.add",
+            contextualName = "product-add",
+            lowCardinalityKeyValues = {"price", "priceValue"})
     @PostMapping("/add")
     public String novo(Product product, BindingResult result) {
+
+        log.info("Adding product with price <{}>", product.getPrice());
 
         if (result.hasFieldErrors()) {
             return "redirect:/form";
