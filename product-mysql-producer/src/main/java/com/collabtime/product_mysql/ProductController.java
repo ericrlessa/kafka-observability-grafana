@@ -44,9 +44,6 @@ public class ProductController {
         return "addProductForm";
     }
 
-    @Observed(name = "product.add",
-            contextualName = "product-add",
-            lowCardinalityKeyValues = {"price", "priceValue"})
     @PostMapping("/add")
     public String novo(Product product, BindingResult result) {
 
