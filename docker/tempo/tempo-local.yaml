@@ -1,5 +1,6 @@
 server:
     http_listen_port: 3200
+    http_listen_address: tempo
 
 distributor:
     receivers:
