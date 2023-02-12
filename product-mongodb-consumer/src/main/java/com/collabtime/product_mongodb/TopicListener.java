@@ -20,11 +20,6 @@ public class TopicListener {
 
     @KafkaListener(topics = "${topic.name.consumer}", groupId = "group_id")
     public void consume(ConsumerRecord<String, String> payload){
-        System.out.println("Tópico: %s".formatted(topicName));
-        System.out.println("key: %s".formatted(payload.key()));
-        System.out.println("Headers: %s".formatted(payload.headers()));
-        System.out.println("Partion: %s".formatted(payload.partition()));
-        System.out.println("Order: %s".formatted(payload.value()));
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
