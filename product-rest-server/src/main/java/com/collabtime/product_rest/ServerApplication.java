@@ -69,9 +69,6 @@ class MyProductService {
 	// <user.name> will be used as a metric name
 	// <getting-user-name> will be used as a span  name
 	// <userType=userType2> will be set as a tag for both metric & span
-	@Observed(name = "price.observation",
-			contextualName = "product-price",
-			lowCardinalityKeyValues = {"price", "priceValue"})
 	String productData(String userId) {
 		log.info("Getting user name for user with id <{}>", userId);
 		try {
@@ -85,34 +82,3 @@ class MyProductService {
 }
 // end::service[]
 
-// tag::handler[]
-// Example of plugging in a custom handler that in this case will print a statement before and after all observations take place
-@Component
-class MyHandler implements ObservationHandler<Observation.Context> {
-
-	private static final Logger log = LoggerFactory.getLogger(MyHandler.class);
-
-	@Override
-	public void onStart(Observation.Context context) {
-		log.info("Before running the observation for context [{}], userType [{}]", context.getName(), getUserTypeFromContext(context));
-	}
-
-	@Override
-	public void onStop(Observation.Context context) {
-		log.info("After running the observation for context [{}], userType [{}]", context.getName(), getUserTypeFromContext(context));
-	}
-
-	@Override
-	public boolean supportsContext(Observation.Context context) {
-		return true;
-	}
-
-	private String getUserTypeFromContext(Observation.Context context) {
-		return StreamSupport.stream(context.getLowCardinalityKeyValues().spliterator(), false)
-				.filter(keyValue -> "price".equals(keyValue.getKey()))
-				.map(KeyValue::getValue)
-				.findFirst()
-				.orElse("UNKNOWN");
-	}
-}
-// end::handler[]
