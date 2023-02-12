@@ -1,25 +1,15 @@
 package com.collabtime.product_rest;
 
-import java.util.Random;
-import java.util.stream.StreamSupport;
-
-import io.micrometer.common.KeyValue;
-import io.micrometer.observation.Observation;
-import io.micrometer.observation.ObservationHandler;
-import io.micrometer.observation.ObservationRegistry;
-import io.micrometer.observation.annotation.Observed;
-import io.micrometer.observation.aop.ObservedAspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Random;
 
 @SpringBootApplication
 public class ServerApplication {
@@ -28,17 +18,8 @@ public class ServerApplication {
 		SpringApplication.run(ServerApplication.class, args);
 	}
 
-	// tag::aspect[]
-	// To have the @Observed support we need to register this aspect
-	@Bean
-	ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
-		return new ObservedAspect(observationRegistry);
-	}
-	// end::aspect[]
-
 }
 
-// tag::controller[]
 @RestController
 class MyController {
 
@@ -55,9 +36,8 @@ class MyController {
 		return myProductService.productData(productId);
 	}
 }
-// end::controller[]
 
-// tag::service[]
+
 @Service
 class MyProductService {
 
@@ -65,12 +45,8 @@ class MyProductService {
 
 	private final Random random = new Random();
 
-	// Example of using an annotation to observe methods
-	// <user.name> will be used as a metric name
-	// <getting-user-name> will be used as a span  name
-	// <userType=userType2> will be set as a tag for both metric & span
-	String productData(String userId) {
-		log.info("Getting user name for user with id <{}>", userId);
+	String productData(String productId) {
+		log.info("Getting user name for user with id <{}>", productId);
 		try {
 			Thread.sleep(random.nextLong(200L)); // simulates latency
 		}
@@ -80,5 +56,4 @@ class MyProductService {
 		return "foo";
 	}
 }
-// end::service[]
 

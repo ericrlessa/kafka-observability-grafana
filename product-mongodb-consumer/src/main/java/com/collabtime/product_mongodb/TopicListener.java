@@ -29,11 +29,7 @@ public class TopicListener {
             Product p = objectMapper.readValue(payload.value(), Product.class);
             productRepository.save(p);
 
-            try {
-                sendProductRest.send(p.getId(), p.getPrice());
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            sendProductRest.send(p.getId(), p.getPrice());
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
