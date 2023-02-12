@@ -17,6 +17,7 @@ public class TopicProducer {
     public void send(String message){
         System.out.println("Payload enviado: %s".formatted(message));
         kafkaTemplate.setObservationEnabled(true);
+        kafkaTemplate.setMicrometerEnabled(true);
         kafkaTemplate.send(topicName, message);
     }
 
