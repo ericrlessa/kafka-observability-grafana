@@ -18,6 +18,9 @@ public class TopicListener {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private SendProductRest sendProductRest;
+
     @KafkaListener(topics = "${topic.name.consumer}", groupId = "group_id")
     public void consume(ConsumerRecord<String, String> payload){
 
@@ -25,9 +28,18 @@ public class TopicListener {
             ObjectMapper objectMapper = new ObjectMapper();
             Product p = objectMapper.readValue(payload.value(), Product.class);
             productRepository.save(p);
+
+            try {
+                sendProductRest.send(p.getId(), p.getPrice());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
+
     }
 
 }

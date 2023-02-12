@@ -28,6 +28,11 @@ services:
       - kafka
       - mysql
 
+  product-rest-server:
+    image: product-rest-server:0.0.1-SNAPSHOT
+    ports:
+      - "8088:8088"
+
   mysql:
     image: mysql:latest
     command: --innodb-use-native-aio=0

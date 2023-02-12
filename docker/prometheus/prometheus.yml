@@ -4,9 +4,7 @@ global:
 
 scrape_configs:
     - job_name: 'prometheus'
-      static_configs:
-          - targets: ['host.docker.internal:9090']
     - job_name: 'apps'
       metrics_path: '/actuator/prometheus'
       static_configs:
-        - targets: ['product-mysql-producer:8082','product-mongodb-consumer:8081','product-kafka-stream:8087']
+        - targets: ['product-mysql-producer:8082','product-mongodb-consumer:8081','product-kafka-stream:8087','product-rest-server:8088']
