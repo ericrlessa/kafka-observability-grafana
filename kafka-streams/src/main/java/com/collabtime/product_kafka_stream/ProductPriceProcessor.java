@@ -7,6 +7,8 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,8 @@ public class ProductPriceProcessor {
 
     private static final Serde<String> STRING_SERDE = Serdes.String();
 
+    private static final Logger log = LoggerFactory.getLogger(ProductPriceProcessor.class);
+
     @Value("${topic.name.origin}")
     private String topicNameOrigin;
 
@@ -24,6 +28,9 @@ public class ProductPriceProcessor {
 
     @Autowired
     void buildPipeline(StreamsBuilder streamsBuilder) {
+
+        log.info("Starting kafka stream processing...");
+
         KStream<String, String> messageStream = streamsBuilder
             .stream(topicNameOrigin, Consumed.with(STRING_SERDE, STRING_SERDE));
 
@@ -34,6 +41,8 @@ public class ProductPriceProcessor {
             .mapValues(v -> v.toString());
 
         valuesGreaterThan100.to(topicNameTarget);
+
+        log.info("Starting kafka stream processing...OK");
     }
 
 }
