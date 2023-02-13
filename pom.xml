@@ -50,7 +50,6 @@
         <groupId>io.micrometer</groupId>
         <artifactId>micrometer-tracing</artifactId>
     </dependency>
-        <!-- For Latency Visualization -->
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-zipkin</artifactId>
