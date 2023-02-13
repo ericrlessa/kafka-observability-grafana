@@ -4,4 +4,4 @@ RUN mkdir -m777 /etc/kafka-streams
 WORKDIR /etc/kafka-streams
 
 ADD target/product-kafka-stream-0.0.1-SNAPSHOT.jar /etc/kafka-streams
-ENTRYPOINT ["java", "-jar", "/etc/kafka-streams/product-kafka-stream-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Xms50M", "-Xmx256M", "-jar", "/etc/kafka-streams/product-kafka-stream-0.0.1-SNAPSHOT.jar"]

@@ -5,4 +5,4 @@ WORKDIR /etc/product_rest_server
 EXPOSE 8088
 
 ADD target/product-rest-server-0.0.1-SNAPSHOT.jar /etc/product_rest_server
-ENTRYPOINT ["java", "-jar", "/etc/product_rest_server/product-rest-server-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Xms50M", "-Xmx256M", "-jar", "/etc/product_rest_server/product-rest-server-0.0.1-SNAPSHOT.jar"]

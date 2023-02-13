@@ -4,6 +4,7 @@ services:
 
   product-kafka-stream:
     image: product-kafka-stream:0.0.1-SNAPSHOT
+    mem_limit: 256m
     depends_on:
       - product-mongodb-consumer
       - product-mysql-producer
@@ -12,6 +13,7 @@ services:
 
   product-mongodb-consumer:
     image: product-mongodb-consumer:0.0.1-SNAPSHOT
+    mem_limit: 256m
     ports:
       - "8081:8081"
     depends_on:
@@ -21,6 +23,7 @@ services:
   
   product-mysql-producer:
     image: product-mysql-producer:0.0.1-SNAPSHOT
+    mem_limit: 256m
     ports:
       - "8082:8082"
     depends_on:
@@ -30,6 +33,7 @@ services:
 
   product-rest-server:
     image: product-rest-server:0.0.1-SNAPSHOT
+    mem_limit: 256m
     ports:
       - "8088:8088"
 

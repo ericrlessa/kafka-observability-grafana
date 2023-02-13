@@ -5,4 +5,4 @@ WORKDIR /etc/product_mysql_producer
 EXPOSE 8082
 
 ADD target/product-mysql-producer-0.0.1-SNAPSHOT.jar /etc/product_mysql_producer
-ENTRYPOINT ["java", "-jar", "/etc/product_mysql_producer/product-mysql-producer-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Xms50M", "-Xmx256M", "-jar", "/etc/product_mysql_producer/product-mysql-producer-0.0.1-SNAPSHOT.jar"]
