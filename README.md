@@ -4,7 +4,7 @@
 
 ### Big picture of services 
 
-![enter image description here](https://github.com/ericrlessa/kafka-observability-grafana/raw/main/arquitecture.png)
+![enter image description here](https://github.com/ericrlessa/kafka-observability-grafana/raw/main/architecture.png)
 
 ### 🎲 Running services
 
