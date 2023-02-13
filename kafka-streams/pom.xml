@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.collabtime</groupId>
-		<artifactId>tracing</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<groupId>com.collabtime</groupId>
-	<artifactId>product-kafka-stream</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>product-kafka-stream</name>
-	<description>Demo Kafka Connect</description>
- 	<packaging>jar</packaging>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.collabtime</groupId>
+        <artifactId>tracing</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <groupId>com.collabtime</groupId>
+    <artifactId>product-kafka-stream</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>product-kafka-stream</name>
+    <description>Demo Kafka Connect</description>
+    <packaging>jar</packaging>
 
-	<properties>
-		<java.version>19</java.version>
-		<docker.tag>${project.version}</docker.tag>
-	</properties>
-	<dependencies>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+    <properties>
+        <java.version>19</java.version>
+        <docker.tag>${project.version}</docker.tag>
+    </properties>
+    <dependencies>
 
-		<dependency>
-   <groupId>org.apache.kafka</groupId>
-   <artifactId>kafka-streams</artifactId>
-</dependency>
-<dependency>
-   <groupId>org.springframework.kafka</groupId>
-   <artifactId>spring-kafka</artifactId>
-</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 
 </project>
