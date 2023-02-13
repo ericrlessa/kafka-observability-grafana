@@ -1,6 +1,6 @@
 # kafka-observability-grafana
 
-<p align="center">Observability applyed a services comunicating via kafka topics and REST</p>
+<p align="center">🚀 Observability applied to services that communicate via kafka and REST</p>
 
 ### Big picture of services 
 
